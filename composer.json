@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "acekyd/laravelmp3": "^1.0",
+        "james-heinrich/getid3": "^1.9",
         "laravel/framework": "5.3.*"
     },
     "require-dev": {
