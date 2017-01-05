@@ -49,7 +49,7 @@ class FrontendController extends Controller
                 'starttime' => '0:00',
                 'endtime' => '23:59',
                 'color' => '#FF0000',
-                'url' => 'get'.$sDate
+                'url' => '/date/'.$sDate
             ];
             $aOut['monthly'][] = $aMonthItem;
         }
@@ -57,5 +57,17 @@ class FrontendController extends Controller
         echo json_encode($aOut);
         exit;
     }
-    
+
+    public function getForDate(Request $request){
+        $sDate = $request->route('date');
+        $sDateStart = date('Y-m-d 00:00:00', strtotime($sDate));
+        $sDateEnd = date('Y-m-d 23:59:59', strtotime($sDate));
+
+        $tmp = Recording::where([
+            ['date_start', '>=', $sDateStart],
+            ['date_start', '<=', $sDateEnd]
+        ])->orderBy('date_start', 'ASC')->get();
+
+        return view('day', ['recordings' => $tmp->toArray()]);
+    }
 }

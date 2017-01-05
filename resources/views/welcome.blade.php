@@ -114,8 +114,8 @@
     </head>
     <body>
         <div class="page">
-            <h1>monthly.js</h1>
-            <h2>Example One - Event Calendar</h2>
+            <h1>Radio archive</h1>
+            <h2>Previous days recordings</h2>
             <div style="width:100%; max-width:600px; display:inline-block;">
                 <div class="monthly" id="mycalendar"></div>
             </div>

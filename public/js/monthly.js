@@ -1,7 +1,7 @@
 /*
  Monthly 2.1.0 by Kevin Thornbloom is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
  */
-
+var aEventList = {};
 (function ($) {
     $.fn.extend({
         monthly: function (options) {
@@ -161,6 +161,7 @@
                     // Add Events
                     var addEvents = function (event) {
                         // Year [0]   Month [1]   Day [2]
+                        aEventList[event.id] = event;
 
                         var fullstartDate = options.dataType == 'xml' ? $(event).find('startdate').text() : event.startdate,
                                 startArr = fullstartDate.split("-"),
@@ -377,6 +378,11 @@
 
             // Click A Day
             $(document.body).on('click', '#' + uniqueId + ' a.monthly-day', function (e) {
+                var indicator = $(this).find('.monthly-event-indicator');
+                var itemid = indicator.data('eventid');
+                var event = aEventList[itemid];
+                window.location = event.url;
+                /*
                 // If events, show events list
                 if (options.mode == 'event' && options.eventList == true) {
                     var whichDay = $(this).data('number');
@@ -408,6 +414,7 @@
                         }
                     }
                 }
+                */
                 e.preventDefault();
             });
 

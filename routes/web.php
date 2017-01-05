@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/fixes/test1', 'FixesController@test1');
 
 Route::get('/events.json', 'FrontendController@events');
+Route::get('/date/{date}', 'FrontendController@getForDate');
