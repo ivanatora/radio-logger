@@ -1,95 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset='utf-8'>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--[if lt IE 9]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-        <title>Laravel</title>
+        <!-- META ===================================================== -->
+        <title>Monthly - A jQuery Calendar Plugin</title>
+        <meta name="description" content="A method for responsive tables">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!-- Favicon  ========================================== -->
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+
+        <!-- CSS ======================================================
+                <link rel="stylesheet" href="css/responsivetables.css">-->
+        <!-- Demo CSS (don't use) -->
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            body, html {
+                padding:0px;
+                margin:0px;
+                background: url('images/bg.jpg') center;
+                background-size:cover;
+                background-attachment: fixed;
+                text-align:center;
+                color:#fff;
+                line-height: 1.4em;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
             }
-
-            .full-height {
-                height: 100vh;
+            body {
+                padding:10vh 0;
             }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
+            h1 {
+                font-family: 'Yanone Kaffeesatz', sans-serif;
                 text-align: center;
+                font-size: 77px;
+                text-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
+            }
+            h2 {
+                font-family: 'Yanone Kaffeesatz', sans-serif;
+                font-size:30px;
+                text-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
+                color:#fff;
+            }
+            .monthly {
+                box-shadow: 0 13px 40px rgba(0, 0, 0, 0.5);
             }
 
-            .title {
-                font-size: 84px;
+            input[type="text"] {
+                padding: 15px;
+                border-radius: 2px;
+                font-size: 16px;
+                outline: none;
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                background: rgba(63, 78, 100, 0.27);
+                color: #fff;
+                width: 250px;
+                box-sizing: border-box;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+            }
+            input[type="text"]:hover {
+                border: 2px solid rgba(255, 255, 255, 0.7);
+            }
+            input[type="text"]:focus {
+                border: 2px solid rgba(255, 255, 255, 1);
+                background:#eee;
+                color:#222;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
+            .button {
+                display: inline-block;
+                padding: 15px 25px;
+                margin: 25px 0 75px 0;
+                border-radius: 3px;
+                color: #fff;
+                background: #000;
+                letter-spacing: .4em;
                 text-decoration: none;
-                text-transform: uppercase;
+                font-size: 13px;
             }
-
-            .m-b-md {
-                margin-bottom: 30px;
+            .button:hover {
+                background: #3b587a;
+            }
+            .desc {
+                max-width: 250px;
+                text-align: left;
+                font-size:14px;
+                padding-top:30px;
+                line-height: 1.4em;
+            }
+            .resize {
+                background: #222;
+                display: inline-block;
+                padding: 6px 15px;
+                border-radius: 22px;
+                font-size: 13px;
+            }
+            @media (max-height: 700px) {
+                .sticky {
+                    position: relative;
+                }
+            }
+            @media (max-width: 600px) {
+                .resize {
+                    display: none;
+                }
             }
         </style>
+        <link rel="stylesheet" href="css/monthly.css">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+        <div class="page">
+            <h1>monthly.js</h1>
+            <h2>Example One - Event Calendar</h2>
+            <div style="width:100%; max-width:600px; display:inline-block;">
+                <div class="monthly" id="mycalendar"></div>
             </div>
+            
         </div>
+        <!-- JS ======================================================= -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/monthly.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+
+                $('#mycalendar').monthly({
+                    weekStart: 'Mon',
+                    mode: 'event',
+                    jsonUrl: 'events.json',
+                    dataType: 'json'
+//                    xmlUrl: 'events.xml'
+                });
+
+                switch (window.location.protocol) {
+                    case 'http:':
+                    case 'https:':
+                        // running on a server, should be good.
+                        break;
+                    case 'file:':
+                        alert('Just a heads-up, events will not work when run locally.');
+                }
+
+            });
+        </script>
     </body>
 </html>
