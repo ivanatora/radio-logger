@@ -47,7 +47,7 @@
             </div>
             <ul class="playlist hidden">
                 @foreach ($vis_dataset as $item)
-                <li audiourl="{{$item['filename']}}">{{$item['filename']}}</li>
+                <li audiourl="/play/{{$item['id']}}.mp3">{{$item['filename']}}</li>
                 @endforeach;
             </ul>
         </div>

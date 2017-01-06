@@ -113,4 +113,15 @@ class FrontendController extends Controller
         ];
         return view('day', $aOutData);
     }
+
+    public function play(Request $request){
+        $id = $request->route('id');
+        $oRecording = Recording::find($id);
+        header('Content-type: audio/mpeg');
+//        header('Content-length: ' . filesize($oRecording->filename));
+//        header('Content-Disposition: filename="' . basename($oRecording->filename));
+        header('X-Pad: avoid browser bug');
+        header('Cache-Control: no-cache');
+        readfile($oRecording->filename);
+    }
 }

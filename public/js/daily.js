@@ -34,3 +34,7 @@ timeline.on('rangechange', function(e){
         })
     }
 })
+
+timeline.on('select', function(e){
+    var id = e.items[0];
+})
