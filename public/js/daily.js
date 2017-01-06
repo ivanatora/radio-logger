@@ -16,24 +16,15 @@ var container = document.getElementById('visualization');
 var options = {
     start: sVisStart,
     end: sVisEnd,
-    editable: false
+    editable: false,
+    min: dtStart,
+    max: dtEnd,
+    zoomMin: 1000 * 60 * 60,
+    zoomMax: 1000 * 60 * 60 * 24
 };
 
 var timeline = new vis.Timeline(container, items, options);
 
-// stuck the timeline to the preselected range
-timeline.on('rangechange', function(e){
-    if (e.start < dtStart){
-        timeline.setWindow(dtStart, e.end, {
-            animation: false
-        });
-    }
-    if (e.end > dtEnd){
-        timeline.setWindow(e.start, dtEnd, {
-            animation: false
-        })
-    }
-})
 
 timeline.on('select', function(e){
     var id = e.items[0];
