@@ -60,6 +60,10 @@ class FrontendController extends Controller
 
     public function getForDate(Request $request){
         $sDate = $request->route('date');
+        if (! preg_match('/\d\d\d\d-\d\d-\d\d/', $sDate)){
+            header('Location: /');
+            exit();
+        }
         $sDateStart = date('Y-m-d 00:00:00', strtotime($sDate));
         $sDateEnd = date('Y-m-d 23:59:59', strtotime($sDate));
 
@@ -68,6 +72,44 @@ class FrontendController extends Controller
             ['date_start', '<=', $sDateEnd]
         ])->orderBy('date_start', 'ASC')->get();
 
-        return view('day', ['recordings' => $tmp->toArray()]);
+        $aVisDataset = [];
+        foreach ($tmp as $item){
+            $aVisDataset[] = [
+                'id' => $item->id,
+                'content' => $item->date_start,
+                'start' => $item->date_start,
+                'end' => $item->date_end,
+                'filename' => basename($item->filename)
+            ];
+        }
+
+        $iTotalDuration = 0;
+        foreach ($tmp as $item){
+            $iTotalDuration += $item->duration;
+        }
+        $sDurationString = '';
+        $iSeconds = $iMinutes = $iHours = 0;
+        $iSeconds = $iTotalDuration;
+        if ($iSeconds > 60){
+            $iSeconds = $iSeconds % 60;
+            $iMinutes = floor($iTotalDuration / 60);
+        }
+        if ($iMinutes > 60){
+            $iMinutes = $iMinutes % 60;
+            $iHours = floor($iMinutes / 60);
+        }
+        $sDurationString = sprintf('%02d:%02d:%02d', $iHours, $iMinutes, $iSeconds);
+
+        $aOutData = [
+            'date' => $sDate,
+            'total' => $tmp->count(),
+            'seconds' => $iTotalDuration,
+            'duration_string' => $sDurationString,
+//            'recordings' => $tmp->toArray(),
+            'vis_dataset' => $aVisDataset,
+            'vis_start' => $sDateStart,
+            'vis_end' => date('Y-m-d H:i:s', strtotime('+1 hour', strtotime($sDateStart)))
+        ];
+        return view('day', $aOutData);
     }
 }
