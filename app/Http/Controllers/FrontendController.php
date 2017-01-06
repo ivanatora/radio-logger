@@ -108,7 +108,8 @@ class FrontendController extends Controller
 //            'recordings' => $tmp->toArray(),
             'vis_dataset' => $aVisDataset,
             'vis_start' => $sDateStart,
-            'vis_end' => date('Y-m-d H:i:s', strtotime('+1 hour', strtotime($sDateStart)))
+            'vis_end' => date('Y-m-d H:i:s', strtotime('+1 hour', strtotime($sDateStart))),
+            'date_end' => $sDateEnd
         ];
         return view('day', $aOutData);
     }

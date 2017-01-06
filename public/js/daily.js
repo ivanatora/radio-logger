@@ -20,3 +20,17 @@ var options = {
 };
 
 var timeline = new vis.Timeline(container, items, options);
+
+// stuck the timeline to the preselected range
+timeline.on('rangechange', function(e){
+    if (e.start < dtStart){
+        timeline.setWindow(dtStart, e.end, {
+            animation: false
+        });
+    }
+    if (e.end > dtEnd){
+        timeline.setWindow(e.start, dtEnd, {
+            animation: false
+        })
+    }
+})

@@ -19,7 +19,10 @@
         <script>
             var aVisDataset = <?= json_encode($vis_dataset); ?>;
             var sVisStart = <?= json_encode($vis_start) ?>;
+            var dtStart = new Date(sVisStart);
             var sVisEnd = <?= json_encode($vis_end) ?>;
+            var sDateEnd = <?= json_encode($date_end) ?>;
+            var dtEnd = new Date(sDateEnd);
         </script>
     </head>
     <body>
