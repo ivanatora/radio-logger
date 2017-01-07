@@ -28,4 +28,32 @@ var timeline = new vis.Timeline(container, items, options);
 
 timeline.on('select', function(e){
     var id = e.items[0];
+    $('ul.playlist li').removeClass('active');
+    var recording = $('li[data-id="'+id+'"]');
+    recording.addClass('active');
+    initAudio(recording);
+    song.play();
+    bAudioRunning = true;
 })
+
+$('.share').click(function(e){
+    e.preventDefault();
+    var elem = $('.playlist li.active');
+    prompt('Press Ctrl + C, then Enter to copy to clipboard', window.location.href+'#'+elem.data('id'));
+})
+
+setTimeout(function(){
+    var hash = window.location.hash;
+    if (hash != ''){
+        var matches = hash.match(/#(\d+)$/)
+        var id = matches[1];
+        timeline.setSelection(id, {focus: true})
+        
+        $('ul.playlist li').removeClass('active');
+        var recording = $('li[data-id="'+id+'"]');
+        recording.addClass('active');
+        initAudio(recording);
+        bAudioRunning = true;
+        song.play();
+    }
+}, 1000)

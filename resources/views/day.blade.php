@@ -31,29 +31,24 @@
             <h2>Total <?= $total ?> items / <?= $duration_string ?> total duration</h2>
             <div id="visualization"></div>
 
-            <div class="player">
-                <div class="pl"></div>
-                <div class="title"></div>
-                <div class="artist"></div>
-                <div class="cover"></div>
-                <div class="controls">
-                    <div class="play"></div>
-                    <div class="pause"></div>
-                    <div class="rew"></div>
-                    <div class="fwd"></div>
-                </div>
-                <div class="volume"></div>
-                <div class="tracker"></div>
+            <div class="myplayer">
+                <button class="previous"><<</button>
+                <span class="title"></span>
+                <button class="forward">>></button>
+                <button class="playpouse">></button>
+                <button class="share">Share current</button>
             </div>
             <ul class="playlist hidden">
                 @foreach ($vis_dataset as $item)
-                <li audiourl="/play/{{$item['id']}}.mp3">{{$item['filename']}}</li>
+                <li audiourl="/play/{{$item['id']}}.mp3" data-id="{{$item['id']}}">{{$item['filename']}}</li>
                 @endforeach;
             </ul>
         </div>
 
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/js/daily.js"></script>
+        <script type="text/javascript" src="/js/audio.js"></script>
     </body>
 </html>
