@@ -20,7 +20,7 @@ var options = {
     min: dtStart,
     max: dtEnd,
     zoomMin: 1000 * 60 * 60,
-    zoomMax: 1000 * 60 * 60 * 24
+    zoomMax: 1000 * 60 * 60 * 24,
 };
 
 var timeline = new vis.Timeline(container, items, options);

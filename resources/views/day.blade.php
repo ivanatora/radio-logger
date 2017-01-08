@@ -12,9 +12,9 @@
         <meta name="description" content="A method for responsive tables">
 
         <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css?nc=<?=time()?>">
         <!--<link rel="stylesheet" href="/css/daily.css">-->
-        <link rel="stylesheet" href="/css/audio.css">
+        <link rel="stylesheet" href="/css/audio.css?nc=<?=time()?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css">
         <script>
             var aVisDataset = <?= json_encode($vis_dataset); ?>;
@@ -48,7 +48,7 @@
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="/js/daily.js"></script>
-        <script type="text/javascript" src="/js/audio.js"></script>
+        <script type="text/javascript" src="/js/daily.js?nc=<?=time()?>"></script>
+        <script type="text/javascript" src="/js/audio.js?nc=<?=time()?>"></script>
     </body>
 </html>
