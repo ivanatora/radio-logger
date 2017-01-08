@@ -35,7 +35,7 @@ function initAudio(elem) {
 }
 
 // play click
-$('.playpouse').click(function (e) {
+$('.playpause').click(function (e) {
     e.preventDefault();
     if (bAudioRunning){
         song.pause();

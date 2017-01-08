@@ -35,7 +35,7 @@
                 <button class="previous"><<</button>
                 <span class="title"></span>
                 <button class="forward">>></button>
-                <button class="playpouse">></button>
+                <button class="playpause">></button>
                 <button class="share">Share current</button>
             </div>
             <ul class="playlist hidden">

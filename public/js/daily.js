@@ -34,6 +34,7 @@ timeline.on('select', function(e){
     initAudio(recording);
     song.play();
     bAudioRunning = true;
+    $('.playpause').text('||');
 })
 
 $('.share').click(function(e){
@@ -55,5 +56,6 @@ setTimeout(function(){
         initAudio(recording);
         bAudioRunning = true;
         song.play();
+        $('.playpause').text('||');
     }
 }, 1000)

@@ -8,7 +8,7 @@
 .myplayer {
     height: 162px;
     position: relative;
-    width: 326px;
+    width: 400px;
     z-index: 2;
     margin: 15px auto;
 }
@@ -27,7 +27,7 @@
     /*width: 33%;*/
     width: 50px;
 }
-.playpouse {
+.playpause {
     display: block;
     margin: 0 auto;
 }
