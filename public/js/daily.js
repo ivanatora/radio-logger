@@ -24,10 +24,13 @@ var options = {
 };
 
 var timeline = new vis.Timeline(container, items, options);
-
+items.add(aNotesDataset);
 
 timeline.on('select', function(e){
     var id = e.items[0];
+    if (typeof id !== 'number'){
+        return;
+    }
     $('ul.playlist li').removeClass('active');
     var recording = $('li[data-id="'+id+'"]');
     recording.addClass('active');
@@ -41,6 +44,28 @@ $('.share').click(function(e){
     e.preventDefault();
     var elem = $('.playlist li.active');
     prompt('Press Ctrl + C, then Enter to copy to clipboard', window.location.href+'#'+elem.data('id'));
+})
+
+$('.comment').click(function(e){
+    e.preventDefault();
+    var sComment = prompt('Enter comment for the current recording');
+    if (sComment !== null){
+        var id = $('.playlist li.active').data('id');
+        $.ajax({
+            url: '/comment',
+            type: 'post',
+            data: {
+                body: sComment,
+                recording_id: id
+            },
+            dataType: 'json',
+            success: function(response){
+                var oComment = response.data;
+                oComment.style = 'border: red;'
+                items.add(oComment);
+            }
+        })
+    }
 })
 
 setTimeout(function(){

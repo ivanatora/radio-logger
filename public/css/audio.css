@@ -96,3 +96,8 @@
     height: 13px;
     width: 13px;
 }
+
+.vis-item.item_note {
+    border: red;
+    background-color: yellow;
+}

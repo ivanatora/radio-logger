@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css">
         <script>
             var aVisDataset = <?= json_encode($vis_dataset); ?>;
+            var aNotesDataset = <?= json_encode($notes_dataset); ?>;
             var sVisStart = <?= json_encode($vis_start) ?>;
             var dtStart = new Date(sVisStart);
             var sVisEnd = <?= json_encode($vis_end) ?>;
@@ -37,6 +38,7 @@
                 <button class="forward">>></button>
                 <button class="playpause">></button>
                 <button class="share">Share current</button>
+                <button class="comment">Add comment to current</button>
             </div>
             <ul class="playlist hidden">
                 @foreach ($vis_dataset as $item)
