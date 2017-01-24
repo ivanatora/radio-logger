@@ -129,8 +129,21 @@ class FrontendController extends Controller
             'vis_start' => $sDateStart,
             'vis_end' => date('Y-m-d H:i:s',
                 strtotime('+1 hour', strtotime($sDateStart))),
-            'date_end' => $sDateEnd
+            'date_end' => $sDateEnd,
+            'prev_date' => '',
+            'next_date' => ''
         ];
+
+        $tmp = Recording::where('date_start', '<', $sDateStart)->orderBy('date_start', 'DESC')->first();
+        if ($tmp){
+            $aOutData['prev_date'] = date('Y-m-d', strtotime($tmp->date_start));
+        }
+
+        $tmp = Recording::where('date_end', '>', $sDateEnd)->orderBy('date_start', 'ASC')->first();
+        if ($tmp){
+            $aOutData['next_date'] = date('Y-m-d', strtotime($tmp->date_start));
+        }
+
         return view('day', $aOutData);
     }
 

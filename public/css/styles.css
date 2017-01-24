@@ -24,6 +24,10 @@ h2 {
     text-shadow: 5px 5px black;
     color:#fff;
 }
+h1 a {
+    text-decoration: none;
+    color: #FFC200;
+}
 .monthly {
     box-shadow: 0 13px 40px rgba(0, 0, 0, 0.5);
 }
@@ -32,6 +36,9 @@ button {
     padding: 5px;
     font-size: 25px;
     font-weight: bold;
+    border-radius: 25px;
+    border: 2px solid black;
+    background: #FFC200;
 }
 
 .vis-text {

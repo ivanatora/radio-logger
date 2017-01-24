@@ -28,7 +28,12 @@
     </head>
     <body>
         <div class="page">
-            <h1>Archive for <?= $date ?></h1>
+            <h1><a href="/">Back to Month</a></h1>
+            <h1>
+                <? if (!empty($prev_date)):?> <a href="/date/<?=$prev_date?>">&lt;</a><? endif; ?>
+                Archive for <?= $date ?>
+                <? if (!empty($next_date)):?> <a href="/date/<?=$next_date?>">&gt;</a><? endif; ?>
+            </h1>
             <h2>Total <?= $total ?> items / <?= $duration_string ?> total duration</h2>
             <div id="visualization"></div>
 
