@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/fixes/test1', 'FixesController@test1');
+//Route::get('/fixes/test1', 'FixesController@test1');
 
 Route::get('/events.json', 'FrontendController@events');
 Route::get('/date/{date}', 'FrontendController@getForDate');
+Route::get('/date', function () {
+    return view('welcome');
+});
 Route::get('/play/{id}.mp3', 'FrontendController@play');
 Route::post('/comment', 'FrontendController@addComment');
