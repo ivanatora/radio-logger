@@ -38,10 +38,10 @@
             <div id="visualization"></div>
 
             <div class="myplayer">
-                <button class="previous"><<</button>
+                <button class="previous small"><<</button>
                 <span class="title"></span>
-                <button class="forward">>></button>
-                <button class="playpause">></button>
+                <button class="forward small">>></button>
+                <button class="playpause small">></button>
                 <button class="share">Share current</button>
                 <button class="comment">Add comment to current</button>
             </div>

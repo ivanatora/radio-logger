@@ -101,3 +101,7 @@
     border: red;
     background-color: yellow;
 }
+
+button.small {
+    width: 45px;
+}
