@@ -18,10 +18,10 @@ class FrontendController extends Controller
         ];
         $iMonth     = $request->input('m');
         $iYear      = $request->input('y');
-        $sDateStart = sprintf("%4d-%02d-01", $iYear, $iMonth);
-        $sDateEnd   = date('Y-m-t', strtotime($sDateStart));
+        $sDateStart = sprintf("%4d-%02d-01 00:00:00", $iYear, $iMonth);
+        $sDateEnd   = date('Y-m-t 23:59:59', strtotime($sDateStart));
 
-//        Log::debug("DATE:", ['date' => $sDateStart]);
+//        Log::debug("DATE:", ['date' => $sDateStart, 'dateend' => $sDateEnd]);
 
         $tmp = Recording::where([
                 ['date_start', '>=', $sDateStart],
